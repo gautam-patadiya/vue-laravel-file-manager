@@ -2,7 +2,11 @@
 
 > File manager for Laravel - Frontend - Vue.js 
 
+> Repository forked from - [alexusmai/laravel-file-manager](https://github.com/alexusmai/laravel-file-manager)
+
 > Backend - Laravel 5 package - [alexusmai/laravel-file-manager](https://github.com/alexusmai/laravel-file-manager)
+
+Added two new things first is Permission for Upload and Delete button. Second is New **insert** option into ContextMenu. When user select files and click on that option component will throw root event **fm-selected-items** with selected items as a object. 
 
 ![Laravel File Manager](https://raw.github.com/alexusmai/vue-laravel-file-manager/master/src/assets/laravel-file-manager.gif?raw=true)
 
@@ -45,6 +49,11 @@ Now vue component is registered and you can use it in your app
 ```
 <file-manager></file-manager>
 ```
+For permission try this
+```
+<file-manager :props={delete:false, upload: false}></file-manager>
+```
+Default both permission will be true. Make sure you pass boolean only to make it false.
 
 Don't forget add a csrf token to head block in your Laravel view and add bootstrap 4 and fontawesome 5 styles
 ```
@@ -53,6 +62,15 @@ Don't forget add a csrf token to head block in your Laravel view and add bootstr
 <!-- Example -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+```
+To catch selected file into object you can do this
+
+```
+mounted() {
+    this.$root.$on('fm-selected-items',function(value){
+        console.log(value);
+    });
+}
 ```
 
 Warning! Package use axios (Promise) - use babel-polyfill for ie11

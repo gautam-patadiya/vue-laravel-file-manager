@@ -24,7 +24,8 @@
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-secondary"
                             v-on:click="showModal('NewFolder')"
-                            v-bind:title="lang.btn.folder">
+                            v-bind:title="lang.btn.folder"
+                            v-show="!props || (props && props.upload !== false)">
                         <i class="far fa-folder"></i>
                     </button>
                     <button type="button" class="btn btn-secondary"
@@ -33,36 +34,41 @@
                             v-bind:title="lang.btn.upload">
                         <i class="fas fa-download"></i>
                     </button>
-                    <button type="button" class="btn btn-secondary"
-                            v-else
-                            v-on:click="showModal('Upload')"
-                            v-bind:title="lang.btn.upload">
-                        <i class="fas fa-download"></i>
-                    </button>
-                    <button type="button" class="btn btn-secondary"
-                            v-on:click="showModal('Delete')"
-                            v-bind:title="lang.btn.delete">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
+                    <template v-if="!props || (props && props.upload !== false)">
+                      <button type="button" class="btn btn-secondary"
+                              v-on:click="showModal('Upload')"
+                              v-bind:title="lang.btn.upload">
+                          <i class="fas fa-download"></i>
+                      </button>
+                    </template>
+                    <template v-if="!props || (props && props.delete !== false)">
+                      <button type="button" class="btn btn-secondary"
+                              v-on:click="showModal('Delete')"
+                              v-bind:title="lang.btn.delete">
+                          <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </template>
                 </div>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-secondary"
-                            v-bind:title="lang.btn.copy"
-                            v-on:click="toClipboard('copy')">
-                        <i class="fas fa-copy"></i>
-                    </button>
-                    <button type="button" class="btn btn-secondary"
-                            v-bind:title="lang.btn.cut"
-                            v-on:click="toClipboard('cut')">
-                        <i class="fas fa-cut"></i>
-                    </button>
-                    <button type="button" class="btn btn-secondary"
-                            v-bind:disabled="!clipboardType"
-                            v-bind:title="lang.btn.paste"
-                            v-on:click="paste">
-                        <i class="fas fa-paste"></i>
-                    </button>
-                </div>
+                <template v-if="!props || (props && props.upload !== false)">
+                  <div class="btn-group" role="group">
+                      <button type="button" class="btn btn-secondary"
+                              v-bind:title="lang.btn.copy"
+                              v-on:click="toClipboard('copy')">
+                          <i class="fas fa-copy"></i>
+                      </button>
+                      <button type="button" class="btn btn-secondary"
+                              v-bind:title="lang.btn.cut"
+                              v-on:click="toClipboard('cut')">
+                          <i class="fas fa-cut"></i>
+                      </button>
+                      <button type="button" class="btn btn-secondary"
+                              v-bind:disabled="!clipboardType"
+                              v-bind:title="lang.btn.paste"
+                              v-on:click="paste">
+                          <i class="fas fa-paste"></i>
+                      </button>
+                  </div>
+                </template>
             </div>
             <div class="col-auto text-right">
                 <div class="btn-group" role="group">
@@ -99,6 +105,11 @@
 import helper from './../mixins/helper';
 
 export default {
+  props: {
+    props: {
+      type: Object
+    }
+  },
   mixins: [helper],
   computed: {
     // Active manager name

@@ -81,9 +81,13 @@ export default {
      * @returns {*|boolean}
      */
     thisImage(extension) {
-      const img = ['png', 'jpg', 'jpeg', 'gif'];
+      if(extension !== undefined){
+        const img = ['png', 'jpg', 'jpeg', 'gif'];
 
-      return img.includes(extension.toLowerCase());
+        return img.includes(extension.toLowerCase());
+      }
+      
+      return false;
     },
 
     /**

@@ -1,10 +1,10 @@
 <template>
     <div class="fm d-flex flex-column"
          v-bind:class="{ 'fm-full-screen': fullScreen }">
-        <navbar></navbar>
+        <navbar :props="props"></navbar>
         <div class="row fm-body">
             <notification></notification>
-            <context-menu></context-menu>
+            <context-menu :props="props"></context-menu>
             <modal v-if="showModal"></modal>
             <template v-if="windowsConfig === 1">
                 <left-manager class="col" manager="left"></left-manager>
@@ -50,6 +50,7 @@ import HTTP from './http/axios-settings';
 
 export default {
   name: 'FileManager',
+  props: ['props'],
   components: {
     Navbar,
     FolderTree,

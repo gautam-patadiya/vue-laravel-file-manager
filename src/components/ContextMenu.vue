@@ -19,6 +19,10 @@
                 <i class="fas fa-fw fa-eye"></i>
                 {{ lang.contextMenu.view }}
             </li>
+            <li v-if="showMenuItem('insert')" v-on:click="menuAction('insert');">
+                <i class="fas fa-fw fa-check"></i>
+                {{ lang.contextMenu.insert }}
+            </li>
             <li v-if="showMenuItem('select')"
                 v-on:click="menuAction('select')">
                 <i class="fas fa-fw fa-check"></i>
@@ -30,11 +34,16 @@
                 {{ lang.contextMenu.download }}
             </li>
         </ul>
+
+        
         <ul class="list-unstyled">
+          <template v-if="!props || (props && props.delete !== false)">
             <li v-on:click="menuAction('copy')">
                 <i class="far fa-fw fa-copy"></i>
                 {{ lang.contextMenu.copy }}
             </li>
+          </template>
+          <template v-if="!props || (props && props.upload !== false)">
             <li v-on:click="menuAction('cut')">
                 <i class="fas fa-fw fa-cut"></i>
                 {{ lang.contextMenu.cut }}
@@ -49,13 +58,16 @@
                 <i class="far fa-fw fa-clipboard"></i>
                 {{ lang.contextMenu.paste }}
             </li>
+          </template>
         </ul>
-        <ul class="list-unstyled">
-            <li class="text-danger" v-on:click="menuAction('delete')">
-                <i class="far fa-fw fa-trash-alt"></i>
-                {{ lang.contextMenu.delete }}
-            </li>
-        </ul>
+        <template v-if="!props || (props && props.delete !== false)">
+          <ul class="list-unstyled">
+              <li class="text-danger" v-on:click="menuAction('delete')">
+                  <i class="far fa-fw fa-trash-alt"></i>
+                  {{ lang.contextMenu.delete }}
+              </li>
+          </ul>
+        </template>
         <ul class="list-unstyled" v-if="showMenuItem('properties')">
             <li v-on:click="menuAction('properties')">
                 <i class="far fa-fw fa-list-alt"></i>
@@ -73,6 +85,7 @@ import helper from './../mixins/helper';
 export default {
   name: 'ContextMenu',
   mixins: [helper],
+  props: ['props'],
   data() {
     return {
       menuVisible: false,
@@ -201,6 +214,15 @@ export default {
           // rename file or folder
           if (!multiSelect) return true;
           break;
+        case 'insert':
+          // insert file or folder
+          let show = true;
+          this.selectedItems.map((item) => {
+            if(item.type == "dir")
+              show = false;
+          });
+          return show;
+          break;
         case 'properties':
           // show element properties
           if (!multiSelect) return true;
@@ -286,6 +308,10 @@ export default {
             show: true,
           });
           break;
+        case 'insert':
+          // show properties modal window
+          this.$root.$emit('fm-selected-items',this.selectedItems);
+          break;
         default:
       }
 
@@ -299,9 +325,13 @@ export default {
      * @returns {*|boolean}
      */
     canView(extension) {
-      const img = ['png', 'jpg', 'jpeg', 'gif'];
+      if(extension !== undefined){
+        const img = ['png', 'jpg', 'jpeg', 'gif'];
 
-      return img.includes(extension.toLowerCase());
+        return img.includes(extension.toLowerCase());
+      }
+      
+      return false;
     },
 
     downloadLink() {

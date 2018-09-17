@@ -222,8 +222,8 @@ export default {
         xps: 'fa-file-powerpoint',
         potx: 'fa-file-powerpoint',
       };
-
-      if (extensionTypes[extension.toLowerCase()] !== undefined) {
+      
+      if (extension !== undefined && extensionTypes[extension.toLowerCase()] !== undefined) {
         return extensionTypes[extension.toLowerCase()];
       }
 

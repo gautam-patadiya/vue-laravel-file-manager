@@ -43,11 +43,11 @@ const en = {
     select: 'Select',
     view: 'View',
     zip: 'Compress',
+    insert: 'Insert',
   },
   info: {
     directories: 'Folders:',
     files: 'Files:',
-    selected: 'Selected:',
     selectedSize: 'Files size:',
     size: 'Files size:',
   },

@@ -1,13 +1,17 @@
 {
-  "name": "laravel-file-manager",
-  "version": "1.0.2",
+  "name": "lv-file-manager",
+  "version": "1.0.1",
   "description": "File manager for Laravel",
   "keywords": [
     "laravel",
     "file",
-    "manager"
+    "manager",
+    "permission",
+    "file manager with permission",
+    "file manager vue",
+    "file manager vue permission"
   ],
-  "author": "Aleksandr Manekin <alexusmai@gmail.com>",
+  "author": "Gautam Patadiya <gprajapati15@gmail.com>",
   "private": false,
   "license": "MIT",
   "main": "src/init.js",

@@ -6,6 +6,8 @@
 
 > Backend - Laravel 5 package - [alexusmai/laravel-file-manager](https://github.com/alexusmai/laravel-file-manager)
 
+> NPM package [lv-file-manager](https://www.npmjs.com/package/lv-file-manager) 
+
 Added few new things 
  - Permission for Upload and Delete button
  - New **insert** option into ContextMenu. When user select files and click on that option component will throw root event **fm-selected-items** with selected items as a object.
@@ -17,7 +19,7 @@ Added few new things
 
 ### NPM
 ```
-$ npm install laravel-file-manager --save
+$ npm i lv-file-manager
 ```
 
 ## Usage

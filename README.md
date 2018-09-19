@@ -2,7 +2,7 @@
 
 > File manager for Laravel - Frontend - Vue.js 
 
-> Repository forked from - [alexusmai/laravel-file-manager](https://github.com/alexusmai/laravel-file-manager)
+> Repository forked from - [alexusmai/vue-laravel-file-manager](https://github.com/alexusmai/vue-laravel-file-manager)
 
 > Backend - Laravel 5 package - [alexusmai/laravel-file-manager](https://github.com/alexusmai/laravel-file-manager)
 

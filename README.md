@@ -6,7 +6,10 @@
 
 > Backend - Laravel 5 package - [alexusmai/laravel-file-manager](https://github.com/alexusmai/laravel-file-manager)
 
-Added two new things first is Permission for Upload and Delete button. Second is New **insert** option into ContextMenu. When user select files and click on that option component will throw root event **fm-selected-items** with selected items as a object. 
+Added few new things 
+ - Permission for Upload and Delete button
+ - New **insert** option into ContextMenu. When user select files and click on that option component will throw root event **fm-selected-items** with selected items as a object.
+ - Additional Parameter for initalization 
 
 ![Laravel File Manager](https://raw.github.com/alexusmai/vue-laravel-file-manager/master/src/assets/laravel-file-manager.gif?raw=true)
 
@@ -49,11 +52,11 @@ Now vue component is registered and you can use it in your app
 ```
 <file-manager></file-manager>
 ```
-For permission try this
+For permission or additional Parameter try this
 ```
-<file-manager :props={delete:false, upload: false}></file-manager>
+<file-manager :props={delete:false, upload: false, additionalParam: "foo=bar"}></file-manager>
 ```
-Default both permission will be true. Make sure you pass boolean only to make it false.
+Default both permission will be true. Make sure you pass boolean only to make it false. Also, note that additional param you will get only initialization time.
 
 Don't forget add a csrf token to head block in your Laravel view and add bootstrap 4 and fontawesome 5 styles
 ```

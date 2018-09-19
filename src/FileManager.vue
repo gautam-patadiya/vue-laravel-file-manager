@@ -130,8 +130,11 @@ export default {
     );
 
     // initialize app settings
-    this.$store.dispatch('fm/initializeApp');
-
+    if(this.props.additionalParam !== undefined){
+      this.$store.dispatch('fm/initializeApp',{ additionalParam: this.props.additionalParam });
+    }else{
+      this.$store.dispatch('fm/initializeApp');
+    }
     /**
      * todo Keyboard event
      */

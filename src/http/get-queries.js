@@ -3,9 +3,19 @@ import HTTP from './axios-settings';
 const getQueries = {
   /**
    * Get configuration data from server
+   * @param params
    * @returns {AxiosPromise<any>}
    */
-  initialize() {
+  initialize(params) {
+    let param = params;
+    if(params !== undefined) {
+      if(params === 'object'){
+        param = JSON.stringify(params);
+      }
+
+      return HTTP.get('initialize', { params: { 'additional-param': param }});
+    }
+
     return HTTP.get('initialize');
   },
 

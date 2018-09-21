@@ -81,12 +81,12 @@ export default {
      * @returns {*|boolean}
      */
     thisImage(extension) {
-      if(extension !== undefined){
+      if (extension !== undefined) {
         const img = ['png', 'jpg', 'jpeg', 'gif'];
 
         return img.includes(extension.toLowerCase());
       }
-      
+
       return false;
     },
 

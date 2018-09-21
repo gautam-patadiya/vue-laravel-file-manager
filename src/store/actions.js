@@ -7,8 +7,8 @@ export default {
    * Get init data from server
    * @param context
    */
-  initializeApp(context,{additionalParam}) {
-    GET.initialize(additionalParam).then((response) => {
+  initializeApp(context) {
+    GET.initialize().then((response) => {
       if (response.data.result.status === 'success') {
         // set app settings
         context.commit('settings/initSettings', response.data.config);

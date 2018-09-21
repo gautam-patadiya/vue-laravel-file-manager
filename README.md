@@ -11,7 +11,7 @@
 Added few new things 
  - Permission for Upload and Delete button
  - New **insert** option into ContextMenu. When user select files and click on that option component will throw root event **fm-selected-items** with selected items as a object.
- - Additional Parameter for initalization 
+ - Additional Header for in all HTTP request
 
 ![Laravel File Manager](https://raw.github.com/alexusmai/vue-laravel-file-manager/master/src/assets/laravel-file-manager.gif?raw=true)
 
@@ -54,9 +54,9 @@ Now vue component is registered and you can use it in your app
 ```
 <file-manager></file-manager>
 ```
-For permission or additional Parameter try this
+For permission or Additional Header Parameter try this
 ```
-<file-manager :props={delete:false, upload: false, additionalParam: "foo=bar"}></file-manager>
+<file-manager :props={delete:false, upload: false, header: {ContentCustom: 'foo'} }></file-manager>
 ```
 Default both permission will be true. Make sure you pass boolean only to make it false. Also, note that additional param you will get only initialization time.
 

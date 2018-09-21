@@ -83,6 +83,10 @@ export default {
       return Promise.reject(error);
     });
 
+    if (this.props !== undefined && this.props.header !== undefined) {
+      Object.assign(HTTP.defaults, { headers: this.props.header });
+    }
+
     // add axios response interceptor
     HTTP.interceptors.response.use(
       (response) => {
@@ -130,11 +134,8 @@ export default {
     );
 
     // initialize app settings
-    if(this.props.additionalParam !== undefined){
-      this.$store.dispatch('fm/initializeApp',{ additionalParam: this.props.additionalParam });
-    }else{
-      this.$store.dispatch('fm/initializeApp');
-    }
+    this.$store.dispatch('fm/initializeApp');
+
     /**
      * todo Keyboard event
      */

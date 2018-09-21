@@ -19,7 +19,8 @@
                 <i class="fas fa-fw fa-eye"></i>
                 {{ lang.contextMenu.view }}
             </li>
-            <li v-if="showMenuItem('insert')" v-on:click="menuAction('insert');">
+            <li v-if="showMenuItem('insert')"
+                v-on:click="menuAction('insert');">
                 <i class="fas fa-fw fa-check"></i>
                 {{ lang.contextMenu.insert }}
             </li>
@@ -34,8 +35,6 @@
                 {{ lang.contextMenu.download }}
             </li>
         </ul>
-
-        
         <ul class="list-unstyled">
           <template v-if="!props || (props && props.delete !== false)">
             <li v-on:click="menuAction('copy')">
@@ -214,16 +213,18 @@ export default {
           // rename file or folder
           if (!multiSelect) return true;
           break;
-        case 'insert':
+        case 'insert': {
           // insert file or folder
           let show = true;
           this.selectedItems.map((item) => {
-            if(item.type == "dir")
+            if (item.type === 'dir') {
               show = false;
+            }
+            return show;
           });
-          return show;
+          if (show) return true;
           break;
-        case 'properties':
+        } case 'properties':
           // show element properties
           if (!multiSelect) return true;
           break;
@@ -310,7 +311,7 @@ export default {
           break;
         case 'insert':
           // show properties modal window
-          this.$root.$emit('fm-selected-items',this.selectedItems);
+          this.$root.$emit('fm-selected-items', this.selectedItems);
           break;
         default:
       }
@@ -325,12 +326,12 @@ export default {
      * @returns {*|boolean}
      */
     canView(extension) {
-      if(extension !== undefined){
+      if (extension !== undefined) {
         const img = ['png', 'jpg', 'jpeg', 'gif'];
 
         return img.includes(extension.toLowerCase());
       }
-      
+
       return false;
     },
 

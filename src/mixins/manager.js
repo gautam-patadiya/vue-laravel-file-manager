@@ -26,6 +26,11 @@ export default {
     selected() {
       return this.$store.state.fm[this.manager].selected;
     },
+
+    // selected files and folders
+    selectionType() {
+      return this.$store.getters['fm/selectionType'];
+    },
   },
   methods: {
     /**
@@ -68,7 +73,7 @@ export default {
       const alreadySelected = this.selected[type].includes(path);
 
       // if pressed Ctrl -> multi select
-      if (event.ctrlKey) {
+      if (event.ctrlKey && this.selectionType === 'multiple') {
         if (!alreadySelected) {
           // add new selected item
           this.$store.commit(`fm/${this.manager}/setSelected`, { type, path });

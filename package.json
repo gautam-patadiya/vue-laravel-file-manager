@@ -1,6 +1,6 @@
 {
   "name": "lv-file-manager",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "File manager for Laravel",
   "keywords": [
     "laravel",

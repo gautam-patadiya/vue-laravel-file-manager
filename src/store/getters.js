@@ -35,4 +35,22 @@ export default {
   inactiveManager(state) {
     return state.activeManager === 'left' ? 'right' : 'left';
   },
+
+  /**
+   * Get navbar visibility
+   * @param state
+   * @returns {boolean}
+   */
+  navbarVisibility(state) {
+    return state.navbarVisibility;
+  },
+
+  /**
+   * Get Selection Type
+   * @param state
+   * @returns {string}
+   */
+  selectionType(state) {
+    return state.selectionType;
+  }
 };

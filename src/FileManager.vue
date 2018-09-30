@@ -83,9 +83,7 @@ export default {
       return Promise.reject(error);
     });
 
-    if (this.props !== undefined && this.props.header !== undefined) {
-      Object.assign(HTTP.defaults, { headers: this.props.header });
-    }
+    this.setPropertiesActions();
 
     // add axios response interceptor
     HTTP.interceptors.response.use(
@@ -158,6 +156,26 @@ export default {
         this.$store.commit('fm/setActiveManager', managerName);
       }
     },
+    setPropertiesActions() {
+      if (this.props !== undefined) {
+        if (this.props.header !== undefined) {
+          Object.assign(HTTP.defaults, { headers: this.props.header });
+        }
+
+        if (this.props.navbar !== undefined && this.props.navbar === false) {
+          this.$store.commit('fm/setNavigationVisibility', false);
+        }
+
+        if (this.props.viewType !== undefined) {
+          this.$store.commit('fm/left/setView', this.props.viewType);
+        }
+
+        if (this.props.selectionType !== undefined && this.props.selectionType === 'single') {
+          this.$store.commit('fm/setSelectionType', this.props.selectionType);
+        }
+      }
+      return true;
+    }
   },
 };
 </script>

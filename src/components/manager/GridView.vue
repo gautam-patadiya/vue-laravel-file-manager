@@ -28,6 +28,7 @@
                  v-bind:title="file.basename"
                  v-bind:class="{'active': checkSelect('files', file.path)}"
                  v-on:click="selectItem('files', file.path, $event)"
+                 v-on:dblclick="emitInsertEvent()"
                  v-on:contextmenu.prevent="contextMenu(file, $event)">
                 <div class="fm-item-icon">
                     <template v-if="thisImage(file.extension)">
@@ -97,6 +98,15 @@ export default {
      */
     createImgUrl(path) {
       return `${location.protocol}//${location.hostname}/file-manager/thumbnails?disk=${this.disk}&path=${path}`;
+    },
+
+    /**
+     * To execute Insertevent
+     * @returns Boolean
+     */
+    emitInsertEvent() {
+      this.$root.$emit('fm-selected-items', this.$store.getters['fm/selectedItems']);
+      return true;
     },
   },
 };

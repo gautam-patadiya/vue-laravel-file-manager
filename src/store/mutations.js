@@ -65,4 +65,22 @@ export default {
   setFileCallBack(state, callback) {
     state.fileCallback = callback;
   },
+
+  /**
+   * To hide navigation
+   * @param state
+   * @param visibility
+   */
+  setNavigationVisibility(state, visibility) {
+    state.navbarVisibility = visibility;
+  },
+
+  /**
+   * To set selection type. Multiple Or Single
+   * @param state
+   * @param type
+   */
+  setSelectionType(state, type) {
+    state.selectionType = type;
+  },
 };

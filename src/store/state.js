@@ -22,4 +22,8 @@ export default {
 
   // file callback for ckeditor, ...
   fileCallback: null,
+
+  navbarVisibility: true,
+
+  selectionType: 'multiple',
 };

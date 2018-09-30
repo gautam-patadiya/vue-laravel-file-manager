@@ -1,5 +1,5 @@
 <template>
-    <div class="fm-navbar">
+    <div class="fm-navbar" v-if="navbarVisible">
         <div class="row justify-content-between">
             <div class="col-auto">
                 <div class="btn-group" role="group">
@@ -147,6 +147,10 @@ export default {
     fullScreen() {
       return this.$store.state.fm.settings.fullScreen;
     },
+
+    navbarVisible() {
+      return this.$store.state.fm.navbarVisibility;
+    }
   },
   methods: {
     // refresh file manager

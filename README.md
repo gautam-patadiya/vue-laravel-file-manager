@@ -12,7 +12,10 @@ Added few new things
  - Permission for Upload and Delete button
  - New **insert** option into ContextMenu. When user select files and click on that option component will throw root event **fm-selected-items** with selected items as a object.
  - Additional Header for in all HTTP request
-
+ - Default View Type option added
+ - SelectionType option added. Helpful for single file select allow.
+ - Hide Navigation option added.
+ 
 ![Laravel File Manager](https://raw.github.com/alexusmai/vue-laravel-file-manager/master/src/assets/laravel-file-manager.gif?raw=true)
 
 ## Installation
@@ -54,10 +57,21 @@ Now vue component is registered and you can use it in your app
 ```
 <file-manager></file-manager>
 ```
-For permission or Additional Header Parameter try this
+For permission or Additional options try this
 ```
-<file-manager :props={delete:false, upload: false, header: {ContentCustom: 'foo'} }></file-manager>
+<file-manager 
+      :props={
+          delete:false, 
+          upload: false, 
+          header: {ContentCustom: 'foo'},
+          navbar: false,
+          viewType: 'grid',
+          selectionType: 'single' 
+      }>
+</file-manager>
 ```
+Default SelectionType multiple. Default View type will be table and Navbar default visible.
+
 Default both permission will be true. Make sure you pass boolean only to make it false. Also, note that additional param you will get only initialization time.
 
 Don't forget add a csrf token to head block in your Laravel view and add bootstrap 4 and fontawesome 5 styles
